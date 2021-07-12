@@ -1,0 +1,221 @@
+body {
+  background-color: #1c1c1c !important; }
+
+h1 {
+  color: #ff5b00;
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font: weight 300;
+  font-size: 500%;
+  text-align: center;
+  padding-top: 10%;
+  padding-bottom: 2%; }
+
+h2 {
+  text-align: center;
+  color: #571aff;
+  font-family: 'Space Grotesk', sans-serif;
+  font: weight 300 !important;
+  text-align: center;
+  padding-top: 2%;
+  padding-bottom: 2%; }
+
+p {
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font: weight 300px;
+  text-align: center; }
+
+.nav, .acordeon {
+  font-family: 'Space Grotesk', sans-serif;
+  padding: 1%;
+  border-top: solid 1px white;
+  border-right: solid 1px white;
+  border-bottom: solid 1px white;
+  border-left: solid 1px white; }
+
+.nav__background-nav {
+  background-color: #1c1c1c; }
+
+.nav__animation {
+  transition: 0.5s; }
+
+.nav__animation:hover {
+  transform: scale(1.1); }
+
+.acordeon {
+  background-color: #ff5b00; }
+
+.acordeon__dentro {
+  background-color: #ff5b00;
+  font-weight: 500;
+  color: white; }
+
+.acordeon__dentro__texto {
+  color: #ffffff; }
+
+.cv {
+  text-align: left;
+  padding: 3%;
+  padding-top: 8%; }
+
+.cv__text h3, .cv__text h5 {
+  text-align: left;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #ffffff;
+  font-weight: bold; }
+
+.cv__text p {
+  text-align: left; }
+
+.cv__text h6 {
+  text-align: left;
+  font-style: italic;
+  color: #b9b9b9; }
+
+.formulario {
+  border-top: solid 1px white;
+  border-right: solid 1px white;
+  border-bottom: solid 1px white;
+  border-left: solid 1px white;
+  padding: 2%;
+  font-family: 'Space Grotesk', sans-serif; }
+
+.formulario__cajas {
+  color: white; }
+
+.aboutme__div {
+  padding: 5%; }
+
+.aboutme__div__img {
+  width: 80%; }
+
+.aboutme__div__text {
+  text-align: left !important; }
+
+.footer {
+  font-family: 'Space Grotesk', sans-serif;
+  color: white !important;
+  background-color: #1c1c1c;
+  padding-top: 10%;
+  padding-bottom: 5%;
+  align-content: center;
+  text-align: center; }
+  .footer p {
+    padding-left: 2%;
+    padding-right: 2%; }
+  @media screen and (min-width: 480px) {
+    .footer p, .footer h3, .footer h5 {
+      font-size: 120%; } }
+  @media screen and (min-width: 481px) and (max-width: 600px) {
+    .footer p, .footer h3, .footer h5 {
+      font-size: 120%; } }
+  @media screen and (min-width: 601px) {
+    .footer p, .footer h3, .footer h5 {
+      font-size: 90.90909%; } }
+
+.footer__div {
+  align-items: center;
+  margin: 0.15%;
+  padding: 0.15%; }
+
+.footer__div__imagefooter {
+  width: 35px; }
+
+#grad {
+  background-image: linear-gradient(#1c1c1c, #313131); }
+
+.padding {
+  padding: 2%; }
+
+.index__imgportada {
+  width: 100%; }
+
+.index__titulos {
+  text-align: left; }
+
+.text {
+  margin: 5%;
+  text-align: center; }
+
+.title {
+  text-align: left; }
+
+#grilla {
+  display: grid;
+  grid-template-areas: "nav nav nav" "productos productos publicidad" "servicios servicios publicidad" "footer footer footer";
+  grid-template-rows: 100px 1fr 1fr 75px;
+  grid-template-columns: 20% auto 15%;
+  margin: 0; }
+
+#grilla2 {
+  display: grid;
+  grid-template-areas: "nav nav nav" "productos productos publicidad" "footer footer footer";
+  grid-template-rows: 100px 1fr 1fr 75px;
+  grid-template-columns: 20% auto 15%;
+  margin: 0; }
+
+aside {
+  grid-area: foto; }
+
+.animacion {
+  animation-duration: 2s;
+  animation-name: aparecer; }
+
+@keyframes aparecer {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+.padre-flex {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex: 1; }
+
+.img-flex {
+  width: 100%;
+  padding: 5%;
+  flex-basis: 30%;
+  transition: 0.5s; }
+
+.img-flex:hover {
+  transform: scale(1.1); }
+
+@media screen and (min-width: 480px) {
+  h1, h2 {
+    font-size: 600%; } }
+
+@media screen and (min-width: 481px) and (max-width: 600px) {
+  h1, h2 {
+    font-size: 400%; } }
+
+@media screen and (min-width: 601px) {
+  h1, h2 {
+    font-size: 400%; } }
+
+@media screen and (min-width: 480px) {
+  p {
+    font-size: 250%; } }
+
+@media screen and (min-width: 481px) and (max-width: 600px) {
+  p {
+    font-size: 150%; } }
+
+@media screen and (min-width: 601px) {
+  p {
+    font-size: 100%; } }
+
+@media screen and (min-width: 481px) and (max-width: 600px) {
+  h5 {
+    font-size: 150%; } }
+
+@media screen and (min-width: 481px) and (max-width: 600px) {
+  h3 {
+    font-size: 200%; } }
+
+@media screen and (min-width: 481px) and (max-width: 600px) {
+  h6 {
+    font-size: 130%; } }
