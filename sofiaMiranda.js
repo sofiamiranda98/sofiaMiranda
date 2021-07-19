@@ -31,18 +31,28 @@ class Producto{
     
 
 
+    const productos = [{ categoria: "lamina", tamaño: "a4", gramaje: 90, cantidad: 1, precio: 80 },
+                        { categoria: "lamina", tamaño: "a3", gramaje: 120, cantidad: 1, precio: 90 },
+                        { categoria: "lamina", tamaño: "90 x 60", gramaje: 120, cantidad: 1, precio: 200}];
 
 
 
+const baratos = productos.filter(categoria => categoria.precio < 100); 
+console.log(baratos);
 
-let laminaEscalera = new Producto ( 'lamina', 'a4' , '90 gramos', '1', '200'); 
-let lamina2 = new Producto ( 'lamina', 'a3' , '120 gramos', '1', '200'); 
+
+let laminaEscalera = new Producto ( 'lamina', 'a4' , '90 gramos', '1', '80'); 
+let lamina2 = new Producto ( 'lamina', 'a3' , '120 gramos', '1', '90'); 
 let lamina3 = new Producto ('lamina', '90x60' , '120 gramos', '1', '200'); 
 
 console.log('Lo que esta disponible es:')
 console.log('laminaEscalera => ', laminaEscalera);
 console.log('lamina2 => ', lamina2);
 console.log('lamina3 => ', lamina3);
+
+
+
+
 
 
 class Cliente {
