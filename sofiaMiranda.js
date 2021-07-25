@@ -2,7 +2,9 @@
 
 class Producto{
 
-    constructor(categoria, tamaño, gramaje, cantidad, precio){
+    constructor(id, nombre, categoria, tamaño, gramaje, cantidad, precio){
+        this.id= id;
+        this.nombre= nombre;
         this.categoria = categoria;
         this.tamaño = tamaño; 
         this.gramaje = gramaje;
@@ -31,9 +33,9 @@ class Producto{
     
 
 
-    const productos = [{ categoria: "lamina", tamaño: "a4", gramaje: 90, cantidad: 1, precio: 80 },
-                        { categoria: "lamina", tamaño: "a3", gramaje: 120, cantidad: 1, precio: 90 },
-                        { categoria: "lamina", tamaño: "90 x 60", gramaje: 120, cantidad: 1, precio: 200}];
+    const productos = [{ nombre:"lamina 1", id: 101, categoria: "lamina", tamaño: "a4", gramaje: 90, cantidad: 1, precio: 80 },
+                        { nombre:"lamina 2",id: 102, categoria: "lamina", tamaño: "a3", gramaje: 120, cantidad: 1, precio: 90 },
+                        { nombre:"lamina 3",id: 103, categoria: "lamina", tamaño: "90 x 60", gramaje: 120, cantidad: 1, precio: 200}];
 
 
 
@@ -41,9 +43,9 @@ const baratos = productos.filter(categoria => categoria.precio < 100);
 console.log(baratos);
 
 
-let laminaEscalera = new Producto ( 'lamina', 'a4' , '90 gramos', '1', '80'); 
-let lamina2 = new Producto ( 'lamina', 'a3' , '120 gramos', '1', '90'); 
-let lamina3 = new Producto ('lamina', '90x60' , '120 gramos', '1', '200'); 
+let laminaEscalera = new Producto ( 'lamina 1', '101', 'lamina', 'a4' , '90 gramos', '1', '80'); 
+let lamina2 = new Producto ( 'lamina 2', '102','lamina', 'a3' , '120 gramos', '1', '90'); 
+let lamina3 = new Producto ('lamina 3', '103','lamina', '90x60' , '120 gramos', '1', '200'); 
 
 console.log('Lo que esta disponible es:')
 console.log('laminaEscalera => ', laminaEscalera);
@@ -51,6 +53,13 @@ console.log('lamina2 => ', lamina2);
 console.log('lamina3 => ', lamina3);
 
 
+for (const producto of productos) {
+    let contenedor = document.createElement("div");
+    contenedor.innerHTML = `<h3> ID: ${producto.id}</h3>
+                            <p>  Producto: ${producto.nombre}</p>
+                            <b> $ ${producto.precio}</b>`;
+    document.body.appendChild(contenedor);
+}
 
 
 
@@ -80,5 +89,6 @@ let nuevoPrecio2 = resta(suma(precioProducto2, envio(precioProducto2)), precioDe
 console.log(nuevoPrecio);
 console.log(nuevoPrecio1);
 console.log(nuevoPrecio2);
+
 
 
