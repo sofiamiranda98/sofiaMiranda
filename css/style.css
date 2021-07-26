@@ -26,6 +26,12 @@ p {
   font: weight 300px;
   text-align: center; }
 
+.shop__background {
+  background-color: #1c1c1c; }
+
+.shop__padding {
+  padding-left: 2%; }
+
 .nav, .acordeon {
   font-family: 'Space Grotesk', sans-serif;
   padding: 1%;
@@ -33,6 +39,11 @@ p {
   border-right: solid 1px white;
   border-bottom: solid 1px white;
   border-left: solid 1px white; }
+
+.grilla {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem; }
 
 .nav__background-nav {
   background-color: #1c1c1c; }

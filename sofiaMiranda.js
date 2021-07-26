@@ -38,6 +38,37 @@ class Producto{
                         { nombre:"lamina 3",id: 103, categoria: "lamina", tamaño: "90 x 60", gramaje: 120, cantidad: 1, precio: 200}];
 
 
+let carritoDeCompras = [];
+
+let container = document.getElementById("container");
+dibujarListaDeProductos(productos);
+
+function dibujarListaDeProductos(productsArray) {
+  productsArray.forEach((product) => {
+    let div = document.createElement("div");
+    let h2 = document.createElement("h2");
+    let p = document.createElement("p");
+    let button = document.createElement("button");
+
+    h2.innerHTML = `${product.nombre}`;
+    p.innerHTML = `$ ${product.precio}`;
+    button.innerHTML = `Agregar al carrito`;
+
+    div.appendChild(h2);
+    div.appendChild(p);
+    div.appendChild(button);
+
+    div.setAttribute("class", "shop__background");
+    button.setAttribute("class", "btnAdd");
+
+    button.addEventListener("click", () => {
+      carritoDeCompras.push(product);
+      console.log("Productos en el carrito =>", carritoDeCompras);
+    });
+
+    container.appendChild(div);
+  });
+}
 
 const baratos = productos.filter(categoria => categoria.precio < 100); 
 console.log(baratos);
