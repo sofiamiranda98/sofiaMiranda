@@ -11,31 +11,15 @@ class Producto{
         this.cantidad = cantidad;
         this.precio = precio;
       }
-    
-
-      solicitarProducto(){
-
-		if(this.categoria != "" && this.gramaje != "" && this.tamaño != "" && this.cantidad){
-			
-			console.log("Lo que usted esta buscando es " + this.categoria + " " + "del tamaño de " + this.tamaño + ",de gramaje " + this.gramaje + "y la cantidad de " + this.cantidad )
-
-		}
-		
-	}
-
-}
-    let producto = new Producto({categoria:"", tamaño:"", gramaje:"", cantidad:""})
-    producto.categoria=prompt("¿Quieres una lamina o pegotines?")
-    producto.tamaño=prompt("¿De que tamaños?")
-    producto.gramaje=prompt("¿De que gramaje?")
-    producto.cantidad=prompt("¿Qué cantidad?")
-    console.log(producto.solicitarProducto())
-    
+    }
 
 
     const productos = [{ nombre:"lamina 1", id: 101, categoria: "lamina", tamaño: "a4", gramaje: 90, cantidad: 1, precio: 80 },
                         { nombre:"lamina 2",id: 102, categoria: "lamina", tamaño: "a3", gramaje: 120, cantidad: 1, precio: 90 },
                         { nombre:"lamina 3",id: 103, categoria: "lamina", tamaño: "90 x 60", gramaje: 120, cantidad: 1, precio: 200}];
+
+const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
+guardarLocal("listaProductos", JSON.stringify(productos));
 
 
 let carritoDeCompras = [];
