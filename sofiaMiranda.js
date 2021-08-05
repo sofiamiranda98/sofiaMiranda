@@ -27,6 +27,16 @@ let carritoDeCompras = [];
 let container = document.getElementById("container");
 dibujarListaDeProductos(productos);
 
+for (const producto of productos) {
+  $("#container").prepend(`<div>
+  <img src="img/ejemplo.png" alt="">
+  <h3> ID: ${producto.id}</h3>
+  <p>  Producto: ${producto.nombre}</p>
+  <b> $ ${producto.precio}</b>
+  <button>Agregar al carrito</button></div>`);
+}
+
+
 function dibujarListaDeProductos(productsArray) {
   productsArray.forEach((product) => {
     let div = document.createElement("div");
@@ -67,18 +77,6 @@ console.log('laminaEscalera => ', laminaEscalera);
 console.log('lamina2 => ', lamina2);
 console.log('lamina3 => ', lamina3);
 
-
-for (const producto of productos) {
-    let contenedor = document.createElement("div");
-    contenedor.innerHTML = `<h3> ID: ${producto.id}</h3>
-                            <p>  Producto: ${producto.nombre}</p>
-                            <b> $ ${producto.precio}</b>`;
-    document.body.appendChild(contenedor);
-}
-
-
-
-
 class Cliente {
     constructor(nombre, email, telefono, productosComprados) {
         this.nombre = nombre;
@@ -105,5 +103,5 @@ console.log(nuevoPrecio);
 console.log(nuevoPrecio1);
 console.log(nuevoPrecio2);
 
-
+console.log($())
 
