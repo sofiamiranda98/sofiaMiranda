@@ -2,7 +2,7 @@
 
 class Producto{
 
-    constructor(id, nombre, categoria, tamaño, gramaje, cantidad, precio){
+    constructor(id, nombre, categoria, tamaño, gramaje, cantidad, precio, img){
         this.id= id;
         this.nombre= nombre;
         this.categoria = categoria;
@@ -10,13 +10,14 @@ class Producto{
         this.gramaje = gramaje;
         this.cantidad = cantidad;
         this.precio = precio;
+        this.img = img;
       }
     }
 
 
-    const productos = [{ nombre:"lamina 1", id: 101, categoria: "lamina", tamaño: "a4", gramaje: 90, cantidad: 1, precio: 80 },
-                        { nombre:"lamina 2",id: 102, categoria: "lamina", tamaño: "a3", gramaje: 120, cantidad: 1, precio: 90 },
-                        { nombre:"lamina 3",id: 103, categoria: "lamina", tamaño: "90 x 60", gramaje: 120, cantidad: 1, precio: 200}];
+    const productos = [{ nombre:"lamina 1", id: 101, categoria: "lamina", tamaño: "a4", gramaje: 90, cantidad: 1, precio: 80, img: Object.assign(new Image, {src:"img/lamina1.png"})},
+                        { nombre:"lamina 2",id: 102, categoria: "lamina", tamaño: "a3", gramaje: 120, cantidad: 1, precio: 90,},
+                        { nombre:"lamina 3",id: 103, categoria: "lamina", tamaño: "90 x 60", gramaje: 120, cantidad: 1, precio: 200,}];
 
 const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
 guardarLocal("listaProductos", JSON.stringify(productos));
@@ -28,13 +29,14 @@ let container = document.getElementById("container");
 dibujarListaDeProductos(productos);
 
 for (const producto of productos) {
-  $("#container").prepend(`<div>
-  <img src="img/ejemplo.png" alt="">
-  <h3> ID: ${producto.id}</h3>
+  $("#container").prepend(`<div id="main">
+  <img src="${producto.img}" alt="">
   <p>  Producto: ${producto.nombre}</p>
   <b> $ ${producto.precio}</b>
-  <button>Agregar al carrito</button></div>`);
+  <button id="btnAdd"> Agregar al carrito</button> </div>`);
 }
+
+$("#container").slideDown(2000);
 
 
 function dibujarListaDeProductos(productsArray) {
