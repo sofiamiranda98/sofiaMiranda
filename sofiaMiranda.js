@@ -1,109 +1,164 @@
 
+    /* Carrito */
 
-class Producto{
+        function shoppingCart() {
 
-    constructor(id, nombre, categoria, tamaño, gramaje, cantidad, precio, img){
-        this.id= id;
-        this.nombre= nombre;
-        this.categoria = categoria;
-        this.tamaño = tamaño; 
-        this.gramaje = gramaje;
-        this.cantidad = cantidad;
-        this.precio = precio;
-        this.img = img;
-      }
-    }
+            // Boton "Agregar al carrito" y Productos
+                const addToShoppingCart = document.querySelectorAll( '.add-to-cart-btn' ); // Botón "Agregar al carrito"
+                
+
+                addToShoppingCart.forEach( ( addToCartButtons ) => {
+                    addToCartButtons.addEventListener( 'click', addToCartBtnClick )
+                });
+
+                function addToCartBtnClick( event ) {
+                    let btn = event.target;
+                    const productos = btn.closest( '.producto' );
+
+                    // Productos
+                        const productoImg = productos.querySelector( '.producto-img' ).src;                        
+                        const productoTitle = productos.querySelector( '.producto-title' ).textContent;
+                        const productoPrice = productos.querySelector( '.producto-price' ).textContent;
+                        
+                
+                    modalCart( productoImg, productoTitle, productoPrice );
+
+                    cartCounterUpdate();
+                    
+                };    
+               
+                
+            // Modal cart
+                const showCart = document.querySelector( '.show-cart' );
+                    
+                function modalCart( productoImg, productoTitle, productoPrice ) {
+
+                    // Que no se duplique el mismo producto en el Carrito
+                        let productoTitleRepeat = showCart.getElementsByClassName( 'shoppingCartPlantTitle' );
+                            
+                        for( let i = 0; i < productoTitleRepeat.length; i++ ) {
+                            if( productoTitleRepeat[i].innerHTML === productoTitle ) {
+                                let productoTitleQuantity = productoTitleRepeat[i].parentElement.parentElement.querySelector( '.shoppingCartProductoQuantity' );
+                                productoTitleQuantity.value++;
+                                cartTotalPrice();
+                            
+                                return;
+                            }
+                        };
+
+                    const shoppingCartDiv = document.createElement( 'div' );
+                    const cartModal =
+                        ` 
+                            <div class="row shoppingCartProducto mt-3 text-center">
+                                <div class="col-3">
+                                    <img src=${productoImg} class="modal__img"/>
+                                    <h6 class="mt-2 shoppingCartProductoTitle">${productoTitle}</h6>
+                                </div> 
+                                <div class="col-3">
+                                    <p class="producto-price shoppingCartProductoPrice">${productoPrice}</p>
+                                </div>
+                                <div class="col-3">
+                                    <input class="text-center shoppingCartProductoQuantity inputCuenta" type="number" value="1">
+                                </div>
+                                <div class="col-3">
+                                    <button class="btn btn-danger" id="remove-plant-btn" data-name="${productoTitle}">
+                                        x
+                                    </button>
+                                </div>
+                            </div>
+                        `
+                                            
+                    shoppingCartDiv.innerHTML = cartModal;
+                    showCart.append( shoppingCartDiv );
+
+                    // Botón Remove 
+                        const removeButton = shoppingCartDiv.querySelector( '#remove-plant-btn' );
+
+                        removeButton.addEventListener( 'click', removeProductoFromCart );
+
+                    // Input Quantity
+                        const inputCartQuantity = shoppingCartDiv.querySelector( '.shoppingCartProductoQuantity' );
+                        
+                        inputCartQuantity.addEventListener( 'change', cartQuantityChange );
+                    
+                        
+                    cartTotalPrice();
+                };
+
+            // Cart Counter
+                function cartCounterUpdate() {
+                    const cartProductosLength = document.querySelectorAll( '.shoppingCartProducto' );
+                    const cartCounter = document.querySelector( '#cart-counter' );
+                    cartCounter.innerHTML = cartProductosLength.length;
+                    cartTotalPrice();
+                };  
 
 
-    const productos = [{ nombre:"lamina 1", id: 101, categoria: "lamina", tamaño: "a4", gramaje: 90, cantidad: 1, precio: 80, img: Object.assign(new Image, {src:"img/lamina1.png"})},
-                        { nombre:"lamina 2",id: 102, categoria: "lamina", tamaño: "a3", gramaje: 120, cantidad: 1, precio: 90,},
-                        { nombre:"lamina 3",id: 103, categoria: "lamina", tamaño: "90 x 60", gramaje: 120, cantidad: 1, precio: 200,}];
+            // Precio total del carrito
+                function cartTotalPrice() {
+                    var totalCount = 0;
+                    const totalPrice = document.querySelector( '.total-price' );
+                    const shoppingCartProductos = document.querySelectorAll( '.shoppingCartProducto' );
+                    
+                    shoppingCartProductos.forEach( ( shoppingCartProducto ) => {
 
-const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
-guardarLocal("listaProductos", JSON.stringify(productos));
+                        const productoCartPriceElement = shoppingCartProducto.querySelector( '.shoppingCartProductoPrice' );
+                        const productoCartPrice = Number( productoCartPriceElement.textContent.replace( '$', '' ) );
 
+                        const productoCartQuantityElement = shoppingCartProducto.querySelector( '.shoppingCartProductoQuantity' );
+                        const productoCartQuantity = Number( productoCartQuantityElement.value );
 
-let carritoDeCompras = [];
+                        totalCount += productoCartPrice * productoCartQuantity;
+                    });
 
-let container = document.getElementById("container");
-dibujarListaDeProductos(productos);
+                    totalPrice.innerHTML = `$${totalCount.toFixed(2)}`;
+                };
 
-for (const producto of productos) {
-  $("#container").prepend(`<div id="main">
-  <img src="${producto.img}" alt="">
-  <p>  Producto: ${producto.nombre}</p>
-  <b> $ ${producto.precio}</b>
-  <button id="btnAdd"> Agregar al carrito</button> </div>`);
-}
+            // Eliminar productos del carrito
+                function removeProductoFromCart(event) {
+                    const removeBtnClicked = event.target;
+                    removeBtnClicked.closest( '.shoppingCartProducto' ).remove();
+                    cartTotalPrice();
+                    cartCounterUpdate();
+                };
+                
+            // Cantidad del carrito (Input)
+                function cartQuantityChange(event) {
+                    const inputCartChange = event.target;
+                    inputCartChange.value <= 0 ? ( inputCartChange.value = 1 ) : null;
+                    cartTotalPrice();
+                    cartCounterUpdate();
+                };
 
-$("#container").slideDown(2000);
+            // Finalizar compra
+                const botonFinalizarCompra = document.querySelector( '.btn-finalizar-compra' );
 
+                botonFinalizarCompra.addEventListener('click', finalizarCompraTotal);
 
-function dibujarListaDeProductos(productsArray) {
-  productsArray.forEach((product) => {
-    let div = document.createElement("div");
-    let h2 = document.createElement("h2");
-    let p = document.createElement("p");
-    let button = document.createElement("button");
+                function finalizarCompraTotal() {
+                    showCart.innerHTML = '';
+                    cartTotalPrice();
+                    cartCounterUpdate();
+                };
 
-    h2.innerHTML = `${product.nombre}`;
-    p.innerHTML = `$ ${product.precio}`;
-    button.innerHTML = `Agregar al carrito`;
+            // Vaciar todo el carrito
+                const botonVaciarCarrito = document.querySelector( '.btn-vaciar-carrito' );
+                
+                botonVaciarCarrito.addEventListener('click', vaciarCarritoCompleto);
 
-    div.appendChild(h2);
-    div.appendChild(p);
-    div.appendChild(button);
+                function vaciarCarritoCompleto() {
+                    showCart.innerHTML = '';
+                    cartTotalPrice();
+                    cartCounterUpdate();
+                };
+        };
+        
+        shoppingCart();
+        
 
-    div.setAttribute("class", "shop__background");
-    button.setAttribute("class", "btnAdd");
-
-    button.addEventListener("click", () => {
-      carritoDeCompras.push(product);
-      console.log("Productos en el carrito =>", carritoDeCompras);
-    });
-
-    container.appendChild(div);
-  });
-}
-
-const baratos = productos.filter(categoria => categoria.precio < 100); 
-console.log(baratos);
-
-
-let laminaEscalera = new Producto ( 'lamina 1', '101', 'lamina', 'a4' , '90 gramos', '1', '80'); 
-let lamina2 = new Producto ( 'lamina 2', '102','lamina', 'a3' , '120 gramos', '1', '90'); 
-let lamina3 = new Producto ('lamina 3', '103','lamina', '90x60' , '120 gramos', '1', '200'); 
-
-console.log('Lo que esta disponible es:')
-console.log('laminaEscalera => ', laminaEscalera);
-console.log('lamina2 => ', lamina2);
-console.log('lamina3 => ', lamina3);
-
-class Cliente {
-    constructor(nombre, email, telefono, productosComprados) {
-        this.nombre = nombre;
-        this.email = email;
-        this.telefono = telefono;
-        this.productosComprados = productosComprados;
-    };
-};
-
-
-const suma  = (a,b) => a + b;
-const resta = (a,b) => a - b;
-
-const envio   = x => x * 0.21;
-let precioProducto  = 500;
-let precioProducto1  = 200; 
-let precioProducto2  = 300;  
-let precioDescuento = 50;  
-
-let nuevoPrecio = resta(suma(precioProducto, envio(precioProducto)), precioDescuento);
-let nuevoPrecio1 = resta(suma(precioProducto1, envio(precioProducto1)), precioDescuento); 
-let nuevoPrecio2 = resta(suma(precioProducto2, envio(precioProducto2)), precioDescuento); 
-console.log(nuevoPrecio);
-console.log(nuevoPrecio1);
-console.log(nuevoPrecio2);
-
-console.log($())
-
+        $("#productos").slideDown(2000);
+        
+                
+                
+       
+            

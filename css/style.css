@@ -8,7 +8,7 @@ h1 {
   font: weight 300;
   font-size: 500%;
   text-align: center;
-  padding-top: 10%;
+  padding-top: 2%;
   padding-bottom: 2%; }
 
 h2 {
@@ -19,6 +19,11 @@ h2 {
   text-align: center;
   padding-top: 2%;
   padding-bottom: 2%; }
+
+h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font: weight 200;
+  color: #ffffff; }
 
 p {
   color: #ffffff;
@@ -31,6 +36,20 @@ p {
 
 .shop__padding {
   padding-left: 2%; }
+
+.shop__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  border: 100 solid rgba(63, 63, 63, 0.125);
+  border-radius: 5%;
+  cursor: pointer; }
+
+.shop__button {
+  font-family: 'Space Grotesk', sans-serif !important; }
 
 .nav, .acordeon {
   font-family: 'Space Grotesk', sans-serif;
@@ -53,6 +72,33 @@ p {
 
 .nav__animation:hover {
   transform: scale(1.1); }
+
+.nav__animationcart {
+  transition: 0.8s; }
+
+.nav__animationcart:hover {
+  transform: scale(1.1); }
+
+.nav__cart {
+  width: 35px;
+  cursor: pointer;
+  padding: 2px; }
+
+.modal__img {
+  height: 160px;
+  width: 160px;
+  border-radius: 5%; }
+
+.inputCuenta {
+  max-width: 49px; }
+
+.table-image {
+  vertical-align: middle;
+  text-align: center; }
+
+.precioTotal {
+  margin-top: 20px;
+  margin-right: 20px; }
 
 .acordeon {
   background-color: #ff5b00; }
@@ -132,6 +178,17 @@ p {
 
 .footer__div__imagefooter {
   width: 35px; }
+
+#cartNumbers {
+  background-color: #ff5b00;
+  width: 23px;
+  height: 23px;
+  border-radius: 100%;
+  text-align: center;
+  position: relative;
+  top: -11px;
+  right: 6px;
+  cursor: pointer; }
 
 #grad {
   background-image: linear-gradient(#1c1c1c, #313131); }
