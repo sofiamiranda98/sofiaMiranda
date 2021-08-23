@@ -1,5 +1,7 @@
 
-    /* Carrito */
+    $("#producto").toggle();
+   
+   /* Carrito */
 
         function shoppingCart() {
 
@@ -34,7 +36,7 @@
                 function modalCart( productoImg, productoTitle, productoPrice ) {
 
                     // Que no se duplique el mismo producto en el Carrito
-                        let productoTitleRepeat = showCart.getElementsByClassName( 'shoppingCartPlantTitle' );
+                        let productoTitleRepeat = showCart.getElementsByClassName( 'shoppingCartProductoTitle' );
                             
                         for( let i = 0; i < productoTitleRepeat.length; i++ ) {
                             if( productoTitleRepeat[i].innerHTML === productoTitle ) {
@@ -156,7 +158,7 @@
         shoppingCart();
         
 
-        $("#productos").slideDown(2000);
+       
         
                 
                 
